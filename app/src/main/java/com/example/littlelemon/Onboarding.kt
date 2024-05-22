@@ -29,11 +29,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.littlelemon.components.Header
 
 @Composable
-fun Onboarding(){
+fun Onboarding(navController: NavHostController){
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .background(Color.White),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
@@ -91,7 +95,8 @@ fun Onboarding(){
                     unfocusedLeadingIconColor = Color.White
                 ),
                 shape = RoundedCornerShape(10.dp),
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .background(Color.White)
                     .padding(top = 5.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
             )
@@ -109,7 +114,8 @@ fun Onboarding(){
                     unfocusedLeadingIconColor = Color.White
                 ),
                 shape = RoundedCornerShape(10.dp),
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .background(Color.White)
                     .padding(top = 5.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
             )
@@ -127,7 +133,8 @@ fun Onboarding(){
                     unfocusedLeadingIconColor = Color.White
                 ),
                 shape = RoundedCornerShape(10.dp),
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .background(Color.White)
                     .padding(top = 5.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
             )
@@ -139,7 +146,7 @@ fun Onboarding(){
         ) {
 
             OutlinedButton(
-                onClick = {},
+                onClick = { navController.navigate(Home.route) },
                 border = BorderStroke(2.dp, colorResource(R.color.secondary1)),
                 colors = ButtonDefaults
                     .buttonColors(containerColor = colorResource(R.color.primary2)),
@@ -158,7 +165,7 @@ fun Onboarding(){
     }
 }
 
-@Composable
+/*@Composable
 fun Header(){
     Column(
         verticalArrangement = Arrangement.Top,
@@ -173,10 +180,10 @@ fun Header(){
             modifier = Modifier.fillMaxWidth(1f).padding(top=10.dp)
         )
     }
-}
+}*/
 
 @Preview(showBackground = true)
 @Composable
 fun OnboardingPreview(){
-    Onboarding()
+    Onboarding(rememberNavController())
 }
