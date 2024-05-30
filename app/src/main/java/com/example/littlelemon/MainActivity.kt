@@ -11,6 +11,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.littlelemon.ui.theme.LittlelemonTheme
 
 class MainActivity : ComponentActivity() {
+
+    private val sharedPreferences by lazy {
+        getSharedPreferences("LittleLemon", MODE_PRIVATE)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -18,7 +22,7 @@ class MainActivity : ComponentActivity() {
             LittlelemonTheme {
                 //Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     //Onboarding()
-                    MyNavigation()
+                    MyNavigation( sharedPreferences)
                    /*Greeting(
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)
