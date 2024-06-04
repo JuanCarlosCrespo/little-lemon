@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
@@ -33,6 +34,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -44,6 +46,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -69,117 +72,13 @@ fun Onboarding(navController: NavHostController){
     val activity = LocalContext.current as Activity
     val sharedPreferences = activity?.getSharedPreferences("LittleLemon", Context.MODE_PRIVATE)
 
-    Column(
-        modifier = Modifier
-            .fillMaxHeight()
-            .background(Color.White)
-            .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.SpaceBetween
-
-    ) {
-        Column(
-            modifier = Modifier
-                .background(Color.White),
-            verticalArrangement = Arrangement.Top
-            //horizontalAlignment  = Alignment.CenterHorizontally
-        ) {
+    Scaffold(
+        topBar = {
             Header()
-
-            Text(
-                text = "Let's get to know you",
-                fontSize = 24.sp,
-                textAlign = TextAlign.Center,
-                color = Color.White,
-                modifier = Modifier
-                    .fillMaxWidth(1f)
-                    .height(150.dp)
-                    .padding(vertical = 20.dp)
-                    .background(color = colorResource(R.color.primary1))
-                    .wrapContentHeight(align = Alignment.CenterVertically)
-            )
-
-            Text(
-                text = "Personal information",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Left,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            )
-
-            /*Text(
-                text = "First Name",
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Left,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding( top = 5.dp, start = 20.dp, end = 20.dp, bottom = 0.dp)
-            )*/
-
-            OutlinedTextField(
-                value = firstName,
-                label = { Text("First Name") },
-                onValueChange = { newText ->
-                                firstName = newText
-                },
-                textStyle = TextStyle.Default.copy(fontSize = 14.sp),
-                colors = OutlinedTextFieldDefaults.colors(
-                    unfocusedTextColor = Color.Gray,
-                    unfocusedBorderColor = Color.Black,
-                    unfocusedLabelColor = Color.Black,
-                    unfocusedLeadingIconColor = Color.White
-                ),
-                shape = RoundedCornerShape(10.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Color.White)
-                    .padding(top = 5.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
-            )
-
-            OutlinedTextField(
-                value = lastName,
-                label = { Text("Last Name") },
-                onValueChange = { newText ->
-                                lastName = newText
-                },
-                textStyle = TextStyle.Default.copy(fontSize = 14.sp),
-                colors = OutlinedTextFieldDefaults.colors(
-                    unfocusedTextColor = Color.Gray,
-                    unfocusedBorderColor = Color.Black,
-                    unfocusedLabelColor = Color.Black,
-                    unfocusedLeadingIconColor = Color.White
-                ),
-                shape = RoundedCornerShape(10.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Color.White)
-                    .padding(top = 5.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
-            )
-
-            OutlinedTextField(
-                value = email,
-                label = { Text("Email") },
-                onValueChange = { newText ->
-                                email = newText
-                },
-                textStyle = TextStyle.Default.copy(fontSize = 14.sp),
-                colors = OutlinedTextFieldDefaults.colors(
-                    unfocusedTextColor = Color.Gray,
-                    unfocusedBorderColor = Color.Black,
-                    unfocusedLabelColor = Color.Black,
-                    unfocusedLeadingIconColor = Color.White
-                ),
-                shape = RoundedCornerShape(10.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Color.White)
-                    .padding(top = 5.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
-            )
-        }
-
-        if( showAlert ) {
+        },
+        modifier = Modifier.fillMaxSize()
+    ) { innerPadding ->
+        if (showAlert) {
             AlertDialog(
                 onDismissRequest = { showAlert = false },
                 title = { Text(text = "Warning") },
@@ -199,15 +98,109 @@ fun Onboarding(navController: NavHostController){
             )
         }
 
-        Row(
+        Column(
             modifier = Modifier
-                .weight(1f, false)
+                .padding(innerPadding)
+                .fillMaxSize()
+                .background(Color.White)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
+            /*Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.White),
+                verticalArrangement = Arrangement.Top
+            ) {*/
+                Text(
+                    text = "Let's get to know you",
+                    fontSize = 24.sp,
+                    textAlign = TextAlign.Center,
+                    color = Color.White,
+                    modifier = Modifier
+                        .fillMaxWidth(1f)
+                        .height(150.dp)
+                        .padding(vertical = 20.dp)
+                        .background(color = colorResource(R.color.primary1))
+                        .wrapContentHeight(align = Alignment.CenterVertically)
+                )
+
+                Text(
+                    text = "Personal information",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Left,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(20.dp)
+                )
+
+                OutlinedTextField(
+                    value = firstName,
+                    label = { Text("First Name") },
+                    onValueChange = { newText ->
+                        firstName = newText
+                    },
+                    textStyle = TextStyle.Default.copy(fontSize = 14.sp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        unfocusedTextColor = Color.Gray,
+                        unfocusedBorderColor = Color.Black,
+                        unfocusedLabelColor = Color.Black,
+                        unfocusedLeadingIconColor = Color.White
+                    ),
+                    shape = RoundedCornerShape(10.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.White)
+                        .padding(top = 5.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
+                )
+
+                OutlinedTextField(
+                    value = lastName,
+                    label = { Text("Last Name") },
+                    onValueChange = { newText ->
+                        lastName = newText
+                    },
+                    textStyle = TextStyle.Default.copy(fontSize = 14.sp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        unfocusedTextColor = Color.Gray,
+                        unfocusedBorderColor = Color.Black,
+                        unfocusedLabelColor = Color.Black,
+                        unfocusedLeadingIconColor = Color.White
+                    ),
+                    shape = RoundedCornerShape(10.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.White)
+                        .padding(top = 5.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
+                )
+
+                OutlinedTextField(
+                    value = email,
+                    label = { Text("Email") },
+                    onValueChange = { newText ->
+                        email = newText
+                    },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                    textStyle = TextStyle.Default.copy(fontSize = 14.sp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        unfocusedTextColor = Color.Gray,
+                        unfocusedBorderColor = Color.Black,
+                        unfocusedLabelColor = Color.Black,
+                        unfocusedLeadingIconColor = Color.White
+                    ),
+                    shape = RoundedCornerShape(10.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.White)
+                        .padding(top = 5.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
+                )
+            //}
 
             OutlinedButton(
                 onClick = {
-                    if( firstName.isBlank() || lastName.isBlank() || email.isBlank()){
-                        showAlert= true
+                    if (firstName.isBlank() || lastName.isBlank() || email.isBlank()) {
+                        showAlert = true
                     } else {
                         sharedPreferences?.edit()
                             ?.putString("firstName", firstName)
@@ -216,12 +209,17 @@ fun Onboarding(navController: NavHostController){
                             ?.commit();
                         navController.navigate(Home.route)
                     }
-                          },
+                },
                 border = BorderStroke(2.dp, colorResource(R.color.secondary1)),
                 colors = ButtonDefaults
                     .buttonColors(containerColor = colorResource(R.color.primary2)),
                 shape = RoundedCornerShape(15.dp),
-                modifier = Modifier.padding(top = 5.dp, start = 20.dp, end = 20.dp, bottom = 40.dp)
+                modifier = Modifier.padding(
+                    top = 25.dp,
+                    start = 20.dp,
+                    end = 20.dp,
+                    bottom = 40.dp
+                )
             ) {
                 Text(
                     text = "Register",
@@ -234,23 +232,6 @@ fun Onboarding(navController: NavHostController){
         }
     }
 }
-
-/*@Composable
-fun Header(){
-    Column(
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 10.dp)
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.logo_header),
-            contentDescription = "Logo Image",
-            modifier = Modifier.fillMaxWidth(1f).padding(top=10.dp)
-        )
-    }
-}*/
 
 @Preview(showBackground = true)
 @Composable

@@ -1,6 +1,7 @@
 package com.example.littlelemon
 
 import android.content.SharedPreferences
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -19,7 +20,7 @@ fun MyNavigation(sharedPreferences: SharedPreferences){
 
     NavHost(navController = navController, startDestination = firstDestination ){
         composable( Home.route ){
-            Home( navController )
+            Home( navController)
         }
         composable( Profile.route ){
             Profile( navController )
