@@ -56,19 +56,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LittlelemonTheme {
-                /*Scaffold(
-                    /*topBar = {
-                        Header()
-                    },*/
-                    modifier = Modifier.fillMaxSize()
-                ) { innerPadding ->
-                    //Onboarding()*/
                     MyNavigation(sharedPreferences)
-                    /*Greeting(
-                        name = "Android",
-                        innerPadding
-                    )*/
-                //}
             }
         }
 
@@ -81,9 +69,6 @@ class MainActivity : ComponentActivity() {
     }
 
     private suspend fun fetchMenu(): List<MenuItemNetwork> {
-        // data URL: https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/littleLemonSimpleMenu.json
-
-        //var menuNetworkinstance = httpClient.get("https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/littleLemonSimpleMenu.json").body<MenuNetwork>()        var menuNetworkinstance = httpClient.get("https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/littleLemonSimpleMenu.json").body<MenuNetwork>();
         var url = "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json";
         var menuNetworkinstance = httpClient.get(url).body<MenuNetwork>();
         return menuNetworkinstance.menu
@@ -94,26 +79,3 @@ class MainActivity : ComponentActivity() {
         database.menuItemDao().insertAll(*menuItemsRoom.toTypedArray())
     }
 }
-
-/*@Composable
-fun Greeting(name: String, modifier: PaddingValues) {
-    Column(
-        modifier = Modifier
-            .padding( modifier )
-            .background(Color.LightGray)
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-    ) {
-        repeat(100) {
-            Text("Item $name", modifier = Modifier.padding(2.dp))
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    LittlelemonTheme {
-        //Greeting("Android")
-    }
-}*/

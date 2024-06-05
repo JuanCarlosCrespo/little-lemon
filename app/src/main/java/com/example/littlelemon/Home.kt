@@ -113,7 +113,7 @@ fun Home(navController: NavHostController){
                 .background(Color.White)
                 .verticalScroll(rememberScrollState())
         ) {
-            HeroSection(searchPhrase, {searchPhrase = it})
+            HeroSection(searchPhrase) { searchPhrase = it }
             Column (
                 modifier = Modifier.padding(top = 20.dp)
             )
@@ -293,7 +293,6 @@ fun HeroSection(search: String, onSearchChanged: ((String) -> Unit) = {}){
             text = "Little Lemon",
             fontSize = 56.sp,
             textAlign = TextAlign.Start,
-            //fontWeight = FontWeight.Bold,
             fontFamily = MarkazyRegular,
             color = colorResource(R.color.primary2),
             modifier = Modifier

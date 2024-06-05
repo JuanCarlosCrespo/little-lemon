@@ -106,96 +106,89 @@ fun Onboarding(navController: NavHostController){
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-            /*Column(
+            Text(
+                text = "Let's get to know you",
+                fontSize = 24.sp,
+                textAlign = TextAlign.Center,
+                color = Color.White,
+                modifier = Modifier
+                    .fillMaxWidth(1f)
+                    .height(150.dp)
+                    .padding(vertical = 20.dp)
+                    .background(color = colorResource(R.color.primary1))
+                    .wrapContentHeight(align = Alignment.CenterVertically)
+            )
+
+            Text(
+                text = "Personal information",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Left,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.White),
-                verticalArrangement = Arrangement.Top
-            ) {*/
-                Text(
-                    text = "Let's get to know you",
-                    fontSize = 24.sp,
-                    textAlign = TextAlign.Center,
-                    color = Color.White,
-                    modifier = Modifier
-                        .fillMaxWidth(1f)
-                        .height(150.dp)
-                        .padding(vertical = 20.dp)
-                        .background(color = colorResource(R.color.primary1))
-                        .wrapContentHeight(align = Alignment.CenterVertically)
-                )
+                    .padding(20.dp)
+            )
 
-                Text(
-                    text = "Personal information",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Left,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(20.dp)
-                )
+            OutlinedTextField(
+                value = firstName,
+                label = { Text("First Name") },
+                onValueChange = { newText ->
+                    firstName = newText
+                },
+                textStyle = TextStyle.Default.copy(fontSize = 14.sp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    unfocusedTextColor = Color.Gray,
+                    unfocusedBorderColor = Color.Black,
+                    unfocusedLabelColor = Color.Black,
+                    unfocusedLeadingIconColor = Color.White
+                ),
+                shape = RoundedCornerShape(10.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.White)
+                    .padding(top = 5.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
+            )
 
-                OutlinedTextField(
-                    value = firstName,
-                    label = { Text("First Name") },
-                    onValueChange = { newText ->
-                        firstName = newText
-                    },
-                    textStyle = TextStyle.Default.copy(fontSize = 14.sp),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedTextColor = Color.Gray,
-                        unfocusedBorderColor = Color.Black,
-                        unfocusedLabelColor = Color.Black,
-                        unfocusedLeadingIconColor = Color.White
-                    ),
-                    shape = RoundedCornerShape(10.dp),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(Color.White)
-                        .padding(top = 5.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
-                )
+            OutlinedTextField(
+                value = lastName,
+                label = { Text("Last Name") },
+                onValueChange = { newText ->
+                    lastName = newText
+                },
+                textStyle = TextStyle.Default.copy(fontSize = 14.sp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    unfocusedTextColor = Color.Gray,
+                    unfocusedBorderColor = Color.Black,
+                    unfocusedLabelColor = Color.Black,
+                    unfocusedLeadingIconColor = Color.White
+                ),
+                shape = RoundedCornerShape(10.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.White)
+                    .padding(top = 5.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
+            )
 
-                OutlinedTextField(
-                    value = lastName,
-                    label = { Text("Last Name") },
-                    onValueChange = { newText ->
-                        lastName = newText
-                    },
-                    textStyle = TextStyle.Default.copy(fontSize = 14.sp),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedTextColor = Color.Gray,
-                        unfocusedBorderColor = Color.Black,
-                        unfocusedLabelColor = Color.Black,
-                        unfocusedLeadingIconColor = Color.White
-                    ),
-                    shape = RoundedCornerShape(10.dp),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(Color.White)
-                        .padding(top = 5.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
-                )
-
-                OutlinedTextField(
-                    value = email,
-                    label = { Text("Email") },
-                    onValueChange = { newText ->
-                        email = newText
-                    },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                    textStyle = TextStyle.Default.copy(fontSize = 14.sp),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedTextColor = Color.Gray,
-                        unfocusedBorderColor = Color.Black,
-                        unfocusedLabelColor = Color.Black,
-                        unfocusedLeadingIconColor = Color.White
-                    ),
-                    shape = RoundedCornerShape(10.dp),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(Color.White)
-                        .padding(top = 5.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
-                )
-            //}
+            OutlinedTextField(
+                value = email,
+                label = { Text("Email") },
+                onValueChange = { newText ->
+                    email = newText
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                textStyle = TextStyle.Default.copy(fontSize = 14.sp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    unfocusedTextColor = Color.Gray,
+                    unfocusedBorderColor = Color.Black,
+                    unfocusedLabelColor = Color.Black,
+                    unfocusedLeadingIconColor = Color.White
+                ),
+                shape = RoundedCornerShape(10.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.White)
+                    .padding(top = 5.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
+            )
 
             OutlinedButton(
                 onClick = {
